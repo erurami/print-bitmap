@@ -1,8 +1,8 @@
 
 #include <cstdio>
 #include <cstdlib>
-#include <windows.h>
 #include "libs\surface.h"
+#include "libs\KeyEvent.h"
 
 int power(int base, int power)
 {
@@ -99,7 +99,18 @@ int main(int argc, char **argv)
     }
 
     main_surface.Print();
-    Sleep(500);
+
+    Event event;
+
+    while (1)
+    {
+        event = waitEvent();
+        if (event.Type == NORMAL_CHARACTER_KEY_EVENT &&
+            event.Info == K_SPACE)
+        {
+            break;
+        }
+    }
 
     system("cls");
 
